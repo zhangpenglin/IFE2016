@@ -1,0 +1,150 @@
+@charset "UTF-8";
+body {
+  background: #dedede;
+  font-family: "微软雅黑"; }
+
+#header {
+  background: #333;
+  height: 60px;
+  line-height: 60px; }
+  #header h1 {
+    float: left; }
+    #header h1 img {
+      display: block; }
+  #header nav {
+    float: right; }
+    #header nav ul li {
+      float: left;
+      margin-right: 30px; }
+      #header nav ul li a {
+        color: #fff;
+        font-size: 12px; }
+      #header nav ul li:last-child a {
+        color: #999; }
+
+#footer {
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+  margin-top: 20px; }
+
+article {
+  padding: 40px;
+  box-sizing: border-box;
+  margin: 20px auto 0 auto;
+  width: 1240px;
+  background-color: #fff;
+  box-shadow: 1px 1px 2px #444;
+  border: 1px solid #ccc; }
+  article ul {
+    list-style: none;
+    padding-left: 20px; }
+    article ul li {
+      line-height: 30px; }
+  article ol {
+    padding-left: 40px; }
+    article ol li {
+      line-height: 30px; }
+  article header {
+    padding-bottom: 20px; }
+    article header h2 {
+      color: #111;
+      font-size: 20px; }
+    article header h3 {
+      color: #666;
+      margin: 20px 0px; }
+    article header p {
+      color: #666;
+      font-size: 12px; }
+  article section p {
+    text-indent: 24px;
+    line-height: 1.4; }
+    article section p img {
+      display: block;
+      padding: 20px 0; }
+  article figure {
+    border: 1px solid #ccc;
+    width: 122px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 40px; }
+    article figure img {
+      height: 80px;
+      width: 100px;
+      padding-top: 10px; }
+  article table {
+    width: 100%;
+    margin-top: 20px; }
+    article table a {
+      color: #8441b4; }
+    article table th {
+      background-color: #333333;
+      color: #fff;
+      text-align: left;
+      text-indent: 10px; }
+    article table tr {
+      line-height: 30px; }
+    article table td {
+      text-align: left;
+      text-indent: 10px; }
+    article table .tfoot {
+      background-color: #cccccc;
+      color: #333;
+      font-weight: bold; }
+
+aside {
+  padding: 40px;
+  box-sizing: border-box;
+  margin: 20px auto 0 auto;
+  width: 1240px;
+  background-color: #fff;
+  box-shadow: 1px 1px 2px #444;
+  border: 1px solid #ccc; }
+  aside input[type="text"], aside input[type="password"] {
+    height: 20px; }
+  aside input[type="submit"] {
+    height: 40px;
+    border-radius: 6px;
+    width: 100%;
+    background-color: #3355d0;
+    border: none;
+    color: #fff;
+    font-size: 18px; }
+  aside textarea {
+    height: 100px;
+    width: 100%; }
+  aside h2 {
+    color: #111;
+    font-size: 20px;
+    border-left: 3px solid #ccc;
+    padding-left: 20px;
+    height: 38px;
+    line-height: 38px; }
+  aside dl dt {
+    float: left;
+    width: 30%;
+    line-height: 40px;
+    min-height: 40px;
+    display: block;
+    text-align: right; }
+  aside dl dd {
+    padding-left: 10px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    float: left;
+    display: block;
+    min-height: 40px;
+    line-height: 40px;
+    width: 70%; }
+  aside .tip {
+    color: #aaa;
+    padding-bottom: 20px; }
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
