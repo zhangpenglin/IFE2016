@@ -114,13 +114,25 @@ article{
             color: #fff;
             text-align: left;
             text-indent: 10px;
+            border-left:1px solid #ccc;
+            &:last-child{
+                border-right: 1px solid #ccc;
+            }
         }
         tr{
             line-height: 30px;
+            border-top:1px solid #ccc;
+            &:last-child{
+                border-bottom: 1px solid #ccc;
+            }
         }
         td{
             text-align: left;
             text-indent: 10px;
+            border-left:1px solid #ccc;
+            &:last-child{
+                border-right: 1px solid #ccc;
+            }
         }
         .tfoot{
             background-color: #cccccc;
