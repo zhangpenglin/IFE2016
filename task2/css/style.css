@@ -85,12 +85,21 @@ article {
       background-color: #333333;
       color: #fff;
       text-align: left;
-      text-indent: 10px; }
+      text-indent: 10px;
+      border-left: 1px solid #ccc; }
+      article table th:last-child {
+        border-right: 1px solid #ccc; }
     article table tr {
-      line-height: 30px; }
+      line-height: 30px;
+      border-top: 1px solid #ccc; }
+      article table tr:last-child {
+        border-bottom: 1px solid #ccc; }
     article table td {
       text-align: left;
-      text-indent: 10px; }
+      text-indent: 10px;
+      border-left: 1px solid #ccc; }
+      article table td:last-child {
+        border-right: 1px solid #ccc; }
     article table .tfoot {
       background-color: #cccccc;
       color: #333;
