@@ -1,0 +1,219 @@
+body{
+    background: #dedede;
+    font-family: "微软雅黑";
+}
+.wrapper{
+
+}
+.content{
+    margin: 0 405px 0 20px;
+}
+#header{
+    background: #333;
+    height: 60px;
+    line-height:60px;
+    overflow: hidden;
+    h1{
+        float: left;
+        img{
+            display: block;
+        }
+    }
+    nav{
+        float: right;
+        ul{
+            
+            li{
+               float: left;
+               margin-right: 30px;
+               a{
+                   color: #fff;
+                   font-size: 12px;
+               } 
+               &:last-child{
+                   a{color: #999;}
+               }
+            }
+        }
+    }
+}
+#footer{
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    color:#fff;
+    background-color: #000;
+    margin-top: 20px;
+}
+article{
+    padding: 40px;
+    box-sizing: border-box;
+    margin: 20px auto 0 auto;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px #444;
+    border: 1px solid #ccc;
+    ul{
+        list-style: none;
+        padding-left: 20px;
+        li{
+            line-height: 30px;
+        }
+    }
+    ol{
+        padding-left: 40px;
+        li{
+            line-height: 30px;
+        }
+    }
+    header{
+        padding-bottom: 20px;
+        h2{
+            color: #111;
+            font-size: 20px;
+        }
+        h3{
+            color: #666;
+            margin:20px 0px;
+        }
+        p{
+            color: #666;
+            font-size: 12px;
+        }
+    }
+    section{
+        p{
+            text-indent: 24px;
+            line-height: 1.4;
+             img{
+                display: block;
+                padding: 20px 0;
+            }
+        }
+       
+    }
+    figure{
+        border: 1px solid #ccc;
+        width: 122px;
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+        margin-top: 15px;
+        margin-left: 40px;
+        float: left;
+        img{
+            height: 80px;
+            width: 100px;
+            padding-top: 10px;
+        }
+        figcaption{
+            
+        }
+    }
+    table{
+        width: 100%;
+        margin-top: 20px;
+        a{
+            color: #8441b4;
+        }
+        th{
+            background-color: #333333;
+            color: #fff;
+            text-align: left;
+            text-indent: 10px;
+            border-left:1px solid #ccc;
+            &:last-child{
+                border-right: 1px solid #ccc;
+            }
+        }
+        tr{
+            line-height: 30px;
+            border-top:1px solid #ccc;
+            &:last-child{
+                border-bottom: 1px solid #ccc;
+            }
+        }
+        td{
+            text-align: left;
+            text-indent: 10px;
+            border-left:1px solid #ccc;
+            &:last-child{
+                border-right: 1px solid #ccc;
+            }
+        }
+        .tfoot{
+            background-color: #cccccc;
+            color: #333;
+            font-weight: bold;
+        }
+        
+    }
+    
+}
+aside{
+    float: right;
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 365px;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px #444;
+    border: 1px solid #ccc;
+    input[type="text"],input[type="password"]{
+        height: 20px;
+    }
+    input[type="submit"]{
+        height: 40px;
+        border-radius: 6px;
+        width: 100%;
+        background-color: #3355d0;
+        border: none;
+        color:#fff;
+        font-size: 18px;
+    }
+    textarea{
+        height: 100px;
+        width: 100%;
+    }
+    h2{
+        color: #111;
+        font-size: 20px;
+        border-left: 3px solid #ccc;
+        padding-left: 10px;
+        height: 38px;
+        line-height: 38px;
+        font-size: 18px;
+    }
+    dl{
+        dt{
+            float:left;
+            width: 100px;
+            font-size: 12px;
+            line-height: 40px;
+            min-height: 40px;
+            display: block;
+            text-align: right;
+        }
+        dd{
+            width: 215px;
+            padding-left: 10px;
+            box-sizing: border-box;
+            float: left;
+            display: block;
+            min-height: 40px;
+            line-height: 40px;    
+        }
+    }
+    .tip{
+        color: #aaa;
+        padding-bottom: 10px;
+        font-size: 14px;
+    }
+}
+.clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
