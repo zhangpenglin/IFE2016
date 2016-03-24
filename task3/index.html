@@ -1,12 +1,122 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+      body {
+        padding: 20px;
+        font-family: "microsoft yahei";
+      }
+      
+      .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      
+      .wrapper {
+        background: #eee;
+        border: 1px solid #999;
+        padding: 20px;
+      }
+      
+      .left {
+        padding: 20px;
+        width: 158px;
+        float: left;
+        margin-left: -100%;
+        border: 1px solid #999;
+        background: #fff;
+        position: relative;
+      }
+      
+      .left img {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .left span {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 14px;
+        width: 60px;
+      }
+      
+      .main {
+        width: 100%;
+        float: left;
+      }
+      
+      .main-content {
+        margin: 0 140px 0 220px;
+        padding: 0 20px;
+        border: 1px solid #999;
+        background: #fff;
+      }
+      
+      .main-content p {
+        line-height: 1.4;
+      }
+      
+      .right {
+        padding: 0 20px;
+        width: 78px;
+        float: left;
+        margin-left: -120px;
+        border: 1px solid #999;
+        background: #fff;
+      }
+      
+      .right img:first-child {
+        margin-top: 20px;
+      }
+      
+      .right img {
+        width: 100%;
+        border: 1px solid #999;
+        margin-bottom: 20px;
+        display: block;
+      }
+    </style>
+  </head>
 
-	<body>
-	</body>
+  <body>
+    <div class="wrapper clearfix">
+      <div class="main">
+        <div class="main-content">
+          <h1>石家庄前端</h1>
+          <h2>团队介绍</h2>
+          <p>
+            <b>石家庄前端</b>团队是一群来自石家庄的前端新人
+            <br /> 我们的git主页是
+            <a href="https://github.com/SJZFE">https://github.com/SJZFE</a>,欢迎review
+          </p>
+          <h2>成员介绍</h2>
+          <p>
+            张鹏林<a href="https://github.com/zhangpenglin">@zhangpenglin</a>
+            <br /> 赵磊<a href="https://github.com/lei40251">@lei40251</a>
+            <br /> 董贺<a href="https://github.com/sinlger">@sinlger</a>
+            <br /> 吕维松<a href="https://github.com/00fa">@00fa</a>
+
+          </p>
+        </div>
+      </div>
+      <div class="left">
+        <img src="img/logo.png" />
+        <span id="">
+        	石家庄前端
+        </span>
+      </div>
+      <div class="right">
+        <img src="img/face1.jpg" />
+        <img src="img/face2.jpg" />
+        <img src="img/face3.jpg" />
+        <img src="img/face4.jpg" />
+      </div>
+    </div>
+  </body>
 
 </html>
