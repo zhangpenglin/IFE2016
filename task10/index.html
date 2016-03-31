@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style type="text/css">
+      html {
+        padding: 0;
+        margin: 0;
+      }
+      
+      .container {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      
+      .container>div {
+        width: 150px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+      
+      .col1 {
+        height: 120px;
+        border: 1px solid #f00;
+      }
+      
+      .col2 {
+        height: 100px;
+        border: 1px solid #f00;
+      }
+      
+      .col3 {
+        height: 40px;
+        border: 1px solid #f00;
+      }
+      
+      .col4 {
+        height: 200px;
+        border: 1px solid #0f0;
+      }
+      
+      @media (max-width:640px) {
+        .container {
+          align-items: flex-start
+        }
+        .col4 {
+          order: -1
+        }
+      }
+    </style>
+  </head>
 
-	<body>
-	</body>
+  <body>
+    <div class="container">
+      <div class="col1"></div>
+      <div class="col2"></div>
+      <div class="col3"></div>
+      <div class="col4"></div>
+    </div>
+  </body>
 
 </html>
