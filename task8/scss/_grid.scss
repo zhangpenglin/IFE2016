@@ -1,0 +1,49 @@
+$grid-gutter-width:20px;
+$grid-columns:12;
+@mixin clearfix() {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin make-container($gutter: $grid-gutter-width) {
+  margin-left: auto;
+  margin-right: auto;
+  padding: ($gutter / 2);
+  @include clearfix();
+}
+
+@mixin make-row($gutter: $grid-gutter-width) {
+  @include clearfix();
+}
+
+@mixin make-col($gutter: $grid-gutter-width) {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  margin: ($gutter / 2);
+}
+
+@mixin make-col-span($columns) {
+  $pec: percentage($columns / $grid-columns);
+  width: calc( #{$pec} - #{$grid-gutter-width});
+}
+
+@mixin make-grid-columns() {
+  @media (max-width: 768px) {
+    @for $i from 1 through $grid-columns {
+      .col-sm-#{$i} {
+        @include make-col-span($i)
+      }
+    }
+  }
+  @media (min-width: 769px) {
+    @for $i from 1 through $grid-columns {
+      .col-md-#{$i} {
+        @include make-col-span($i)
+      }
+    }
+  }
+}
