@@ -1,0 +1,23 @@
+@import "_grid";
+body,html{
+  margin: 0;
+  padding: 0;
+}
+.container{
+@include make-container()
+}
+.row{
+  @include make-row();
+  >div{
+    @include make-col();
+    height: 50px;
+    border: 1px solid #999;
+    background-color: #eee;
+    box-sizing: border-box;
+    
+  }
+}
+
+@include make-grid-columns()
+
+
