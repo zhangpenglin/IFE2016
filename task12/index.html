@@ -1,12 +1,187 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+      body {
+        font-family: simhei;
+      }
+      
+      table {
+        text-align: left;
+      }
+      
+      table tr:first-child {
+        background-color: #000;
+        color: #fff;
+      }
+      
+      table tr:nth-child(2),
+      table tr:nth-child(3),
+      table tr:nth-child(4) {
+        color: #f00;
+      }
+      
+      table tr:nth-child(2n+3) {
+        background-color: #888;
+      }
+      
+      input {
+        width: 200px;
+        margin: 20px 0;
+        transition: width 1s;
+      }
+      
+      input:focus {
+        width: 300px;
+        border: 1px solid #10446B;
+      }
+      
+      ol,
+      ul,
+      li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      
+      @keyframes slide {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 0%;
+        }
+      }
+      
+      .banner {
+        width: 300px;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .banner ul li {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+      
+      .banner ul li:target {
+        z-index: 999;
+        animation: slide .5s ease;
+      }
+      
+      .banner ul li:nth-child(1) {
+        background-color: blue;
+      }
+      
+      .banner ul li:nth-child(2) {
+        background-color: green;
+      }
+      
+      .banner ul li:nth-child(3) {
+        background-color: yellow;
+      }
+      
+      .banner ol {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1000;
+      }
+      
+      .banner ol li {
+        width: 25px;
+        height: 25px;
+        background-color: rgba(255, 255, 255, .7);
+        float: left;
+        margin: 5px;
+      }
+      
+      .banner ol li a {
+        display: block;
+        text-align: center;
+        line-height: 25px;
+        text-decoration: none;
+      }
+    </style>
+  </head>
 
-	<body>
-	</body>
+  <body>
+    <table>
+      <tr>
+        <th>排名</th>
+        <th>网站</th>
+        <th>热度</th>
+      </tr>
+      <tr>
+        <td>1.</td>
+        <td>百度前端技术学院</td>
+        <td>13000</td>
+      </tr>
+      <tr>
+        <td>2.</td>
+        <td>百度前端技术学院</td>
+        <td>12000</td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td>百度前端技术学院</td>
+        <td>11000</td>
+      </tr>
+      <tr>
+        <td>4.</td>
+        <td>百度前端技术学院</td>
+        <td>10000</td>
+      </tr>
+      <tr>
+        <td>5.</td>
+        <td>百度前端技术学院</td>
+        <td>9000</td>
+      </tr>
+      <tr>
+        <td>6.</td>
+        <td>百度前端技术学院</td>
+        <td>8000</td>
+      </tr>
+      <tr>
+        <td>7.</td>
+        <td>百度前端技术学院</td>
+        <td>7000</td>
+      </tr>
+      <tr>
+        <td>8.</td>
+        <td>百度前端技术学院</td>
+        <td>6000</td>
+      </tr>
+      <tr>
+        <td>9.</td>
+        <td>百度前端技术学院</td>
+        <td>5000</td>
+      </tr>
+      <tr>
+        <td>10.</td>
+        <td>百度前端技术学院</td>
+        <td>4000</td>
+      </tr>
+    </table>
+
+    <input type="text" placeholder="点我宽度变化" />
+    <div class="banner">
+      <ul>
+        <li id="banner1"></li>
+        <li id="banner2"></li>
+        <li id="banner3"></li>
+      </ul>
+      <ol>
+        <li><a href="#banner1">1</a></li>
+        <li><a href="#banner2">2</a></li>
+        <li><a href="#banner3">3</a></li>
+      </ol>
+    </div>
+  </body>
 
 </html>
