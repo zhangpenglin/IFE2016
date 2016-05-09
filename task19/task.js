@@ -30,19 +30,49 @@
             })
         }
     }
-    function bubbleSort(arr) {
-        var temp;
-        for (var i = 0, l = arr.length; i < l; i++) {
-            for (var j = 0; j < l-i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    temp = arr[j]
-                    arr[j] = arr[j + 1]
-                    arr[j + 1] = temp
+    function bubbleSort() {
+        var arr = stack.data
+        var temp, i = 0, l = arr.length, j = 0;
+        // for (i = 0, l = arr.length; i < l; i++) {
+        //     // for (var j = 0; j < l-i; j++) {
+        //     //     if (arr[j] > arr[j + 1]) {
+        //     //         temp = arr[j]
+        //     //         arr[j] = arr[j + 1]
+        //     //         arr[j + 1] = temp
+        //     //     }
+        //     // }
+        //     innerLoop(0)
+        // }
+        outerLoop(0)
+        function outerLoop(i) {
+            if (i >= l) return
+            i++
+            innerLoop(0, function (cb) {
+                return function () {
+                    setTimeout(function () {
+                        cb(i)
+                    }, 200)
                 }
-            }
+            }(outerLoop))
 
         }
-        return arr
+
+        function innerLoop(j, cb) {
+            if (j >= l - i) {
+                cb();
+                return
+            }
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+            }
+            stack.render()
+            j++
+            setTimeout(function () {
+                innerLoop(j, cb)
+            }, 200)
+        }
     }
 
     function validateNum() {
@@ -84,9 +114,9 @@
         stack.data.pop()
         stack.render()
     })
-    e.sort.addEventListener('click',function(){
-        stack.data=bubbleSort(stack.data)
-        stack.render()
+    e.sort.addEventListener('click', function () {
+        bubbleSort()
+
     })
 
 
