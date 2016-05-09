@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 21</title>
+    <style type="text/css">
+        #text {
+        }
+
+        #tagList ,#hobbyList{
+            width: 100%;
+            height: 30px;
+            overflow: hidden;
+            list-style: none;
+        }
+
+        #tagList li,#hobbyList li{
+            min-width: 30px;
+            padding: 0 5px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            text-align: center;
+
+            float: left;
+            background-color: lightblue;
+            color: #fff;
+            margin-left: 5px;
+        }
+        #tagList li:hover,#hobbyList li:hover{
+            background-color: #cd4a48;
+        }
+        #tagList li:hover:before,#hobbyList li:hover:before{
+            content:"删除"
+        }
+        em {
+            color: #00ff00;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <input type="text" id="tagText">
+    <ul id="tagList">
+    </ul>
+</div>
+<div>
+    <textarea name="hobbyText" id="hobbyText" cols="30" rows="10"></textarea>
+    <button id="hobbyButton">确认兴趣爱好</button>
+    <ul id="hobbyList">
+    </ul>
+</div>
+
+<script src="task.js"></script>
+
+</body>
+
+</html>
