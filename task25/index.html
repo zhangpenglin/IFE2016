@@ -1,0 +1,81 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 25</title>
+    <style type="text/css">
+        .container {
+        }
+
+        .node {
+            width: 100%;
+            box-sizing: border-box;
+            padding:5px 20px;
+            margin-left: 3px;
+            transition: background-color 0.3s;
+            background-color: #fff;
+            position: relative;
+            color: #ffcc00;
+        }
+        .node.current{
+            background-color: #cd4a48;
+        }
+        .node.search{
+            background-color: #72b16a;
+        }
+        .node.selected{
+            background-color: #3355d0;
+        }
+        .parent_up,.parent_before{
+            color: #8441b4;
+        }
+        .parent_right{
+            height: 28px;
+            overflow: hidden;
+        }
+        .parent_up:before{
+            content:"";
+            border-width: 6px 6px 0;
+            border-color: #8441b4 transparent transparent ;
+            border-style: solid;
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: 0;
+            top:10px
+        }
+        .parent_right:before{
+            content:"";
+            border-width: 6px 0 6px 6px;
+            border-color: transparent transparent transparent #8441b4;
+            border-style: solid;
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: 0;
+            top:10px
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+</div>
+<button id="traverseDF">深度优先遍历</button>
+<button id="traverseBF" >广度优先遍历</button>
+<input type="text" id="search">
+<button id="traverseDFSearch">深度优先搜索</button>
+<button id="traverseBFSearch">广度优先搜索</button>
+<div>
+    <button id="remove">删除节点</button>
+    <button id="add">增加节点</button>
+    <input type="text" id="addInput">
+</div>
+<script src="task.js"></script>
+
+</body>
+
+</html>
