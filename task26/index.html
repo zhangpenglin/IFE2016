@@ -5,39 +5,45 @@
     <meta charset="utf-8">
     <title>IFE JavaScript Task 26</title>
     <style>
-        .universe{
-            background-color:#111111;
+        .universe {
+            background-color: #ddd;
             position: relative;
             width: 600px;
             height: 600px;
         }
-        .planet{
-            position:absolute;
-            top:50%;
-            left:50%;
-            transform: translate3d(-50%,-50%,0);
+
+        .planet {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
             width: 200px;
-            height:200px;
+            height: 200px;
             border-radius: 50%;
             background-color: dodgerblue;
         }
-        .spaceSship{
+
+        .spaceSship {
 
         }
+
     </style>
 </head>
 
 <body>
-<div class="universe">
-<div class="planet"></div>
-</div>
+<!--<div class="universe">-->
+    <!--<div class="planet"></div>-->
+<!--</div>-->
+<canvas id="canvas"></canvas>
 <div id="panel">
-<button id="newShip">新的飞船起飞</button>
+    <button id="newShip">新的飞船起飞</button>
 </div>
 <script src="event.js"></script>
 <script src="Mediator.js"></script>
 <script src="panel.js"></script>
-<script src="task.js"></script>
+<script src="canvas.js"></script>
+<script src="spaceShip.js"></script>
+<script src="main.js"></script>
 </body>
 
 </html>
