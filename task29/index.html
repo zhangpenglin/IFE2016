@@ -1,0 +1,50 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 29</title>
+    <style>
+        .empty input{
+            border-color: red;
+        }
+        .empty #error{
+            color:red;
+        }
+        .valid input{
+            border-color: green;
+        }
+        .valid #error{
+            color:green;
+        }
+        .invalid input{
+            border-color: red;
+        }
+        .invalid #error{
+            color:red;
+        }
+
+        #validate{
+            background-color: #cccccc;
+            padding:6px 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+<form action="">
+    <div>
+        <label for="nameInput">名称</label>
+        <input type="text" id="nameInput" name="nameInput">
+        <div id="validate">确定</div>
+    </div>
+    <div id="error">必填,字符数4-16</div>
+
+
+</form>
+
+<script src="task.js"></script>
+</body>
+
+</html>
