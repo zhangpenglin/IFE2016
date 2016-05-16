@@ -1,0 +1,92 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 33</title>
+    <style>
+        .container {
+            position: relative;
+        }
+
+        .item {
+            box-sizing: border-box;
+            position: absolute;
+            border-left: 1px solid #cccccc;
+            border-top: 1px solid #cccccc;
+        }
+
+        .item:nth-child(10n) {
+            border-right: 1px solid #cccccc;
+        }
+
+        .item:nth-child(n+91) {
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .item.left, .item.right, .item.top, .item.bottom {
+            background-color: red;
+        }
+
+        .item.left:before {
+            content: "";
+            background-color: #3355d0;
+            position: absolute;
+            width: 5px;
+            height: 60px;
+            top: 0;
+            left: 0;
+        }
+
+        .item.right:before {
+            content: "";
+            background-color: #3355d0;
+            position: absolute;
+            width: 5px;
+            height: 60px;
+            top: 0;
+            right: 0;
+        }
+
+        .item.top:before {
+            content: "";
+            background-color: #3355d0;
+            position: absolute;
+            height: 5px;
+            width: 60px;
+            top: 0;
+            left: 0;
+        }
+
+        .item.bottom:before {
+            content: "";
+            background-color: #3355d0;
+            position: absolute;
+            height: 5px;
+            width: 60px;
+            bottom: 0;
+            left: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="container">
+
+</div>
+<div>
+    <input type="text">
+    <button>执行</button>
+
+</div>
+<div>
+    <button id="move">GO</button>
+    <button id="turnLeft">TUN LEF</button>
+    <button id="turnRight">TUN RIG</button>
+    <button id="turnBack">TUN BAC</button>
+</div>
+<script src="task.js"></script>
+</body>
+
+</html>
