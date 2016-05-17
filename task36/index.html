@@ -1,0 +1,123 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 36</title>
+    <style>
+        .container {
+            position: relative;
+        }
+
+        .item {
+            box-sizing: border-box;
+            position: absolute;
+            border-left: 1px solid #cccccc;
+            border-top: 1px solid #cccccc;
+        }
+        #square {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: red;
+            transition: all 0.5s ease-in-out;
+        }
+
+        #square:before {
+            content: "";
+            background-color: #3355d0;
+            position: absolute;
+            height: 5px;
+            width: 60px;
+            top: 0;
+            left: 0;
+        }
+
+        #square.top {
+            transform: rotate(360deg);
+        }
+
+        #square.bottom {
+            transform: rotate(180deg);
+        }
+
+        #square.left {
+            transform: rotate(270deg);
+        }
+
+        #square.right {
+            transform: rotate(90deg);
+        }
+        .item:nth-child(10n+1) {
+            border-right: 1px solid #cccccc;
+        }
+
+        .item:nth-child(n+91) {
+            border-bottom: 1px solid #cccccc;
+        }
+        .item.wall{
+            background-color: deepskyblue;
+        }
+        .console{
+            position: relative;
+        }
+        textarea{
+            background-color: #111;
+            color: #418c59;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        ul{
+            position: absolute;
+            top:0;
+            left:0;
+            list-style: none;
+            padding: 0;
+            margin-top:5px ;
+            margin-bottom: 0;
+
+        }
+        ul>li{
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container">
+    <div id="square"></div>
+</div>
+<div class="console">
+    <ul >
+
+    </ul>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button>执行</button>
+
+</div>
+<div>
+    <button id="move">GO 3</button>
+    <button id="turnLeft">TUN LEF</button>
+    <button id="turnRight">TUN RIG</button>
+    <button id="turnBack">TUN BAC</button>
+</div>
+<div>
+    <button id="traLeft">TRA LEF 2</button>
+    <button id="traRight">TRA RIG 3</button>
+    <button id="traTop">TRA TOP 5</button>
+    <button id="traBottom">TRA BOT 1</button>
+</div>
+<div>
+    <button id="moveLeft">MOV LEF 1</button>
+    <button id="moveRight">MOV RIG 2</button>
+    <button id="moveTop">MOV TOP 2</button>
+    <button id="moveBottom">MOV BOT 1</button>
+</div>
+<div>
+    <button id="build">BUILD</button>
+    <button id="brushRed">BRU red</button>
+</div>
+<script src="task.js"></script>
+</body>
+
+</html>
