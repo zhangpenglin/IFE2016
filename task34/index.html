@@ -9,16 +9,46 @@
             position: relative;
         }
 
-
-
         .item {
             box-sizing: border-box;
             position: absolute;
             border-left: 1px solid #cccccc;
             border-top: 1px solid #cccccc;
         }
+        #square {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: red;
+            transition: all 1s;
+        }
 
-        .item:nth-child(10n) {
+        #square:before {
+            content: "";
+            background-color: #3355d0;
+            position: absolute;
+            height: 5px;
+            width: 60px;
+            top: 0;
+            left: 0;
+        }
+
+        #square.top {
+            transform: rotate(360deg);
+        }
+
+        #square.bottom {
+            transform: rotate(180deg);
+        }
+
+        #square.left {
+            transform: rotate(270deg);
+        }
+
+        #square.right {
+            transform: rotate(90deg);
+        }
+        .item:nth-child(10n+1) {
             border-right: 1px solid #cccccc;
         }
 
@@ -75,6 +105,7 @@
 
 <body>
 <div id="container">
+<div id="square"></div>
 </div>
 <div>
     <input type="text">
@@ -86,6 +117,18 @@
     <button id="turnLeft">TUN LEF</button>
     <button id="turnRight">TUN RIG</button>
     <button id="turnBack">TUN BAC</button>
+</div>
+<div>
+    <button id="traLeft">TRA LEF</button>
+    <button id="traRight">TRA RIG</button>
+    <button id="traTop">TRA TOP</button>
+    <button id="traBottom">TRA BOT</button>
+</div>
+<div>
+    <button id="moveLeft">MOV LEF</button>
+    <button id="moveRight">MOV RIG</button>
+    <button id="moveTop">MOV TOP</button>
+    <button id="moveBottom">MOV BOT</button>
 </div>
 <script src="task.js"></script>
 </body>
