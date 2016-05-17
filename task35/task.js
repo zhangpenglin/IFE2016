@@ -54,7 +54,7 @@
 
                 if (!this.animating) {
                     doRender.call(this, this.animateQueue.shift())
-                }else{
+                } else {
                     console.log('正在进行动画，加入到animateQueue中')
                 }
             }
@@ -80,7 +80,7 @@
                                 doRender.call(that, nextParam)
                                 console.log('请求队列中下一个')
                                 break;
-                            }else{
+                            } else {
                                 console.log('参数相同')
                             }
                         }
@@ -100,96 +100,97 @@
 
         },
 
-        move: function (dire) {
+        move: function (dire, length) {
             var that = this
+            var length = length || 1
             var moveFuncs = {
                 top: function () {
-                    this.row = this.row > 0 ? this.row - 1 : this.row
+                    this.row = this.row - length >= 0 ? this.row - length : 0
                 },
                 left: function () {
-                    this.col = this.col > 0 ? this.col - 1 : this.col
+                    this.col = this.col - length >= 0 ? this.col - length : 0
                 },
                 right: function () {
-                    this.col = this.col < ITEM_COL_COUNT ? this.col + 1 : ITEM_COL_COUNT
+                    this.col = this.col + length <= ITEM_COL_COUNT-1 ? this.col + length : ITEM_COL_COUNT-1
                 },
                 bottom: function () {
-                    this.row = this.row < ITEM_ROW_COUNT ? this.row + 1 : ITEM_ROW_COUNT
+                    this.row = this.row + length <= ITEM_ROW_COUNT-1 ? this.row + length : ITEM_ROW_COUNT-1
                 }
             }
             if (dire) {
                 return function () {
                     that.direction = dire
                     moveFuncs[dire].call(that)
-                    console.log('向'+dire+'移动')
+                    console.log('向' + dire + '移动')
                     that.render()
                 }
             }
             moveFuncs[that.direction].call(that)
-            console.log('向'+that.direction+'移动')
+            console.log('向' + that.direction + '移动')
 
             that.render()
         },
         turnLeft: function () {
             this.rotation = this.rotation - 90
             this.direction = direction(this.direction).left
-            console.log('左转,当前方向为'+this.direction)
+            console.log('左转,当前方向为' + this.direction)
             this.render()
 
         },
         turnRight: function () {
             this.rotation = this.rotation + 90
             this.direction = direction(this.direction).right
-            console.log('右转,当前方向为'+this.direction)
+            console.log('右转,当前方向为' + this.direction)
             this.render()
 
         },
         turnBack: function () {
             this.rotation = this.rotation + 180
             this.direction = direction(this.direction).back
-            console.log('后转,当前方向为'+this.direction)
+            console.log('后转,当前方向为' + this.direction)
 
             this.render()
         },
-        turnMove: function (dire) {
+        turnMove: function (dire, length) {
             var that = this
             var currentDire = direction(this.direction)
             if (currentDire.left == dire) {
                 return function () {
                     that.turnLeft()
-                    that.move()
+                    that.move(null, length)
                 }
             } else if (currentDire.right == dire) {
                 return function () {
                     that.turnRight()
-                    that.move()
+                    that.move(null, length)
                 }
             } else if (currentDire.back == dire) {
                 return function () {
                     that.turnBack()
-                    that.move()
+                    that.move(null, length)
                 }
             } else if (this.direction == dire) {
                 return function () {
-                    that.move()
+                    that.move(null, length)
                 }
             }
         },
-        command: function () {
+        command: function (length) {
             var square = this
 
             return {
-                'GO': square.move.bind(square),
-                'TUN LEF': square.turnLeft.bind(square),
-                'TUN RIG': square.turnRight.bind(square),
-                'TUN BAC': square.turnBack.bind(square),
-                'TRA LEF': square.move('left'),
-                'TRA RIG': square.move('right'),
-                'TRA TOP': square.move('top'),
-                'TRA BOT': square.move('bottom'),
-                'MOV LEF': square.turnMove('left'),
-                'MOV RIG': square.turnMove('right'),
-                'MOV TOP': square.turnMove('top'),
-                'MOV BOT': square.turnMove('bottom'),
+                'GO': square.move(square.direction, length),
+                'TUN LEF': square.turnLeft,
+                'TUN RIG': square.turnRight,
+                'TUN BAC': square.turnBack,
+                'TRA LEF': square.move('left', length),
+                'TRA RIG': square.move('right', length),
+                'TRA TOP': square.move('top', length),
+                'TRA BOT': square.move('bottom', length),
+                'MOV LEF': square.turnMove('left', length),
+                'MOV RIG': square.turnMove('right', length),
+                'MOV TOP': square.turnMove('top', length),
+                'MOV BOT': square.turnMove('bottom', length),
             }
         }
     }
@@ -221,21 +222,31 @@
             var button = document.getElementsByTagName('button')[0]
             button.addEventListener('click', function () {
                 //执行按钮命令
-                var commands=that.element.value.split("\n")
-                commands.forEach(function(cmd){
-                    square.command()[cmd]()
+                var commands = that.element.value.split("\n")
+                commands.forEach(function (cmd) {
+                    var cmd = parseCmd(cmd)
+                    if (!cmd) {
+                        alert('非法的命令');
+                        return
+                    }
+                    square.command(cmd.length)[cmd.cmdToExecute]()
                 })
 
             });
             ['move', 'turnLeft', 'turnRight', 'turnBack', 'traLeft', 'traRight', 'traTop', 'traBottom', 'moveLeft', 'moveRight', 'moveTop', 'moveBottom'].forEach(function (dire) {
                 var ele = document.getElementById(dire)
                 ele.addEventListener('click', function () {
-                    var func = square.command()[ele.innerText].bind(square)
+                    var cmd = parseCmd(ele.innerText)
+                    if (!cmd) {
+                        alert('非法的命令');
+                        return
+                    }
+                    var func = square.command(cmd.length)[cmd.cmdToExecute].bind(square)
                     square.commandQueue.push(func)
                     if (!square.animating) {
-                        var func=square.commandQueue.shift()
+                        var func = square.commandQueue.shift()
                         func.call(that)
-                    }else{
+                    } else {
                         console.log('正在进行动画,加入到commandQueue中')
                     }
                 })
@@ -243,6 +254,29 @@
         }
     }
 
+    function parseCmd(str) {
+        var match = str.match(/[0-9]/)
+        var cmds = Object.keys(square.command())
+        var cmdToExecute = ""
+        cmds.forEach(function (cmd) {
+            if (str.indexOf(cmd) > -1) {
+                cmdToExecute = cmd
+            }
+        })
+        if (cmdToExecute == "") {
+            return false
+        }
+        if (match) {
+            return {
+                cmdToExecute: cmdToExecute,
+                length: parseInt(match[0])
+            }
+        }
+        return {
+            cmdToExecute: cmdToExecute,
+            length: 0
+        }
+    }
 
     function direction(dire) {
         var left, right, back
