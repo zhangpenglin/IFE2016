@@ -1,9 +1,12 @@
 (function () {
+    var TIMER=500
     var WIDTH = 600
     var HEIGHT = 600
     var ITEM_ROW_COUNT = 10
     var ITEM_COL_COUNT = 10
     var ITEM_SIZE = HEIGHT / 10
+    var DEFAULT_WALL_COLOR="deepskyblue"
+    var DEFAULT_BRUSH_COLOR="orange"
     var container = document.getElementById('container')
 
     container.style.width = WIDTH + 'px'
@@ -31,12 +34,15 @@
         animateQueue: [],
         commandQueue: [],
         animating: false,
+        walls:[],
+        faceElement:null,
         element: document.getElementById('square'),
         init: function () {
             square.row = 5
             square.col = 5
             square.rotation = 0
             square.direction = 'top'
+            square.faceElement=square.getFaceElement()
             square.render()
         },
         render: function () {
@@ -67,6 +73,8 @@
                 that.element.style.left = renderParam.left;
                 that.element.style.top = renderParam.top;
                 that.element.style.transform = renderParam.transform
+                that.faceElement=square.getFaceElement()
+
                 setTimeout(function () {
                     if (that.animateQueue.length > 0) {
                         while (true) {
@@ -91,7 +99,7 @@
                             that.commandQueue.shift().call(that)
                         }
                     }
-                }, 1000)
+                }, TIMER)
             }
 
             function equal(a, b) {
@@ -119,7 +127,6 @@
             }
             if (dire) {
                 return function () {
-                    that.direction = dire
                     moveFuncs[dire].call(that)
                     console.log('向' + dire + '移动')
                     that.render()
@@ -134,6 +141,7 @@
             this.rotation = this.rotation - 90
             this.direction = direction(this.direction).left
             console.log('左转,当前方向为' + this.direction)
+
             this.render()
 
         },
@@ -148,7 +156,6 @@
             this.rotation = this.rotation + 180
             this.direction = direction(this.direction).back
             console.log('后转,当前方向为' + this.direction)
-
             this.render()
         },
         turnMove: function (dire, length) {
@@ -175,6 +182,74 @@
                 }
             }
         },
+        build:function(){
+            var that=this
+            if(that.faceElement){
+                that.addWall(that.faceElement)
+            }else{
+                console.error('超出边界')
+            }
+        },
+        getFaceElement:function(){
+            var that=this
+            var ele={
+                x:this.row,
+                y:this.col
+            }
+            var funcs={
+                top:function(){
+                    if(that.row>0){
+                        ele.x-=1
+                        return ele
+                    }
+                },
+                bottom:function(){
+                    if(that.row<ITEM_ROW_COUNT-1){
+                        ele.x+=1
+                        return ele
+                    }
+
+                },
+                left:function(){
+                    if(that.col>0){
+                        ele.y-=1
+                        return ele
+                    }
+
+                },
+                right:function(){
+                    if(that.col<ITEM_COL_COUNT-1){
+                        ele.y+=1
+                        return ele
+                    }
+
+                }
+            }
+            var position=funcs[that.direction]()
+            if (position){
+                ele.element=items[position.x][position.y]
+                return ele
+            }
+            return null
+        },
+        addWall:function(wall){
+            var element=wall.element
+            //已经被添加过的wall不被添加到数组中
+            if(element.className.indexOf('wall')>-1){
+                console.error("wall已经添加过了")
+                return
+            }
+            this.brushWall(element,DEFAULT_WALL_COLOR)
+            this.walls.push(wall)
+        },
+        brush:function(color){
+            if(this.faceElement&&this.faceElement.backgroundColor!=""){//判断是不是墙
+                this.brushWall(this.faceElement,color)
+            }
+        },
+        brushWall:function(element,color){
+            element.style.backgroundColor=color
+        },
         command: function (length) {
             var square = this
 
@@ -191,6 +266,8 @@
                 'MOV RIG': square.turnMove('right', length),
                 'MOV TOP': square.turnMove('top', length),
                 'MOV BOT': square.turnMove('bottom', length),
+                'BUILD':square.build,
+                'BRUSH':square.brush
             }
         }
     }
@@ -229,11 +306,11 @@
                         alert('非法的命令');
                         return
                     }
-                    square.command(cmd.length)[cmd.cmdToExecute]()
+                    square.command(cmd.length)[cmd.cmdToExecute].call(square)
                 })
 
             });
-            ['move', 'turnLeft', 'turnRight', 'turnBack', 'traLeft', 'traRight', 'traTop', 'traBottom', 'moveLeft', 'moveRight', 'moveTop', 'moveBottom'].forEach(function (dire) {
+            ['move', 'turnLeft', 'turnRight', 'turnBack', 'traLeft', 'traRight', 'traTop', 'traBottom', 'moveLeft', 'moveRight', 'moveTop', 'moveBottom','build'].forEach(function (dire) {
                 var ele = document.getElementById(dire)
                 ele.addEventListener('click', function () {
                     var cmd = parseCmd(ele.innerText)
@@ -255,27 +332,26 @@
     }
 
     function parseCmd(str) {
-        var match = str.match(/[0-9]/)
+        var lengthMatch = str.match(/[0-9]/)
+        var colorMatch=/BRU/.test(str)&&str.split(" ")[1]
         var cmds = Object.keys(square.command())
-        var cmdToExecute = ""
+        var cmdArg = {
+            length:1,
+            cmdToExecute:"",
+            color:colorMatch||DEFAULT_BRUSH_COLOR
+        }
         cmds.forEach(function (cmd) {
             if (str.indexOf(cmd) > -1) {
-                cmdToExecute = cmd
+                cmdArg.cmdToExecute = cmd
             }
         })
         if (cmdToExecute == "") {
             return false
         }
-        if (match) {
-            return {
-                cmdToExecute: cmdToExecute,
-                length: parseInt(match[0])
-            }
+        if (lengthMatch) {
+            cmdArg.length=parseInt(lengthMatch[0])
         }
-        return {
-            cmdToExecute: cmdToExecute,
-            length: 0
-        }
+        return cmdArg
     }
 
     function direction(dire) {

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>IFE JavaScript Task 35</title>
+    <title>IFE JavaScript Task 36</title>
     <style>
         .container {
             position: relative;
@@ -20,7 +20,7 @@
             width: 60px;
             height: 60px;
             background-color: red;
-            transition: all 1s;
+            transition: all 0.5s ease-in-out;
         }
 
         #square:before {
@@ -54,6 +54,9 @@
 
         .item:nth-child(n+91) {
             border-bottom: 1px solid #cccccc;
+        }
+        .item.wall{
+            background-color: deepskyblue;
         }
         .console{
             position: relative;
@@ -109,6 +112,10 @@
     <button id="moveRight">MOV RIG 2</button>
     <button id="moveTop">MOV TOP 2</button>
     <button id="moveBottom">MOV BOT 1</button>
+</div>
+<div>
+    <button id="build">BUILD</button>
+    <button id="brushRed">BRU red</button>
 </div>
 <script src="task.js"></script>
 </body>
