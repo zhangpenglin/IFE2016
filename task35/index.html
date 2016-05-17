@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>IFE JavaScript Task 34</title>
+    <title>IFE JavaScript Task 35</title>
     <style>
         .container {
             position: relative;
@@ -55,59 +55,39 @@
         .item:nth-child(n+91) {
             border-bottom: 1px solid #cccccc;
         }
-
-        .item.left, .item.right, .item.top, .item.bottom {
-            background-color: red;
+        .console{
+            position: relative;
         }
-
-        .item.left:before {
-            content: "";
-            background-color: #3355d0;
+        textarea{
+            background-color: #111;
+            color: #418c59;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        ul{
             position: absolute;
-            width: 5px;
-            height: 60px;
-            top: 0;
-            left: 0;
-        }
+            top:0;
+            left:0;
+            list-style: none;
+            padding: 0;
+            margin-top:5px ;
+            margin-bottom: 0;
 
-        .item.right:before {
-            content: "";
-            background-color: #3355d0;
-            position: absolute;
-            width: 5px;
-            height: 60px;
-            top: 0;
-            right: 0;
         }
-
-        .item.top:before {
-            content: "";
-            background-color: #3355d0;
-            position: absolute;
-            height: 5px;
-            width: 60px;
-            top: 0;
-            left: 0;
+        ul>li{
+            font-size: 14px;
         }
-
-        .item.bottom:before {
-            content: "";
-            background-color: #3355d0;
-            position: absolute;
-            height: 5px;
-            width: 60px;
-            bottom: 0;
-            left: 0;
-        }
-
     </style>
 </head>
 
 <body>
 <div id="container">
-<div id="square"></div>
+    <div id="square"></div>
 </div>
-<div>
+<div class="console">
+    <ul >
+
+    </ul>
     <textarea name="" id="" cols="30" rows="10"></textarea>
     <button>执行</button>
 
