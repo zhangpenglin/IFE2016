@@ -22,6 +22,13 @@ class App extends Component {
     hide(){
         this.setState({show:false})
     }
+
+    confirmCallback(){
+        console.log('confirm clicked')
+    }
+    cancelCallback(){
+        console.log('cancel clicked')
+    }
     render() {
         const {title,content}=this.modal;
 
@@ -32,7 +39,10 @@ class App extends Component {
                     show={this.state.show}
                     title={title}
                     content={content}
-                    onClose={this.hide.bind(this)}>
+                    onClose={this.hide.bind(this)}
+                    confirmCallback={this.confirmCallback}
+                    cancelCallback={this.cancelCallback}
+                >
 
                 </Modal>
             </div>
