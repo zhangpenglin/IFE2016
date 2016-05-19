@@ -1,4 +1,4 @@
-
+$modal-color:orange;
 
 .modalMask {
   background-color: rgba(0, 0, 0, 0.5);
@@ -15,7 +15,7 @@
     margin-left: -150px;
     margin-top: -150px;
     .title {
-      background-color: #0074D9;
+      background-color: $modal-color;
       height: 30px;
       line-height: 30px;
       width: 100%;
@@ -28,8 +28,23 @@
       box-sizing: border-box;
       padding: 20px;
       min-height: 80px;
-      background-color: #ddd;
+      background-color: #fff;
       width: 100%;
+      .text{
+
+      }
+      .buttons{
+        margin-top: 10px;
+        text-align: center;
+        button{
+          background-color: $modal-color;
+          padding: 6px 10px;
+          font-size: 14px;
+          color:#fff;
+          margin-right: 20px;
+          border: none;
+        }
+      }
     }
   }
 }
