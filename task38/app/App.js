@@ -1,4 +1,3 @@
-import './main.scss';
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
@@ -24,8 +23,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        head: state.sort.head,
-        body: state.sort.body
+        head: state.sort.get('head'),
+        body: state.sort.get('body')
     }
 }
 

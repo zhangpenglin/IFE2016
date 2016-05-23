@@ -25,7 +25,7 @@
             // _ctx.fill()
             _ctx.strokeStyle='red'
             _ctx.font='12px Arial'
-            _ctx.fillText(ship.id+'号飞船'+Math.ceil(ship.energy)+"%",190,0)
+            _ctx.fillText(ship.id+'号飞船'+Math.ceil(ship.energy),190,0)
             _ctx.drawImage(spaceshipImg, 200, 0, 48, 48);
             _ctx.restore();
             ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);

@@ -7,18 +7,13 @@ class Sort extends Component{
     constructor(props){
         super(props)
     }
-    ascSort(){
-        this.props.actions.ascSort("数学")
-    }
-    descSort(){
-        this.props.actions.descSort("数学")
-    }
+
     render(){
 
         return (
             <div>
-                <div className="triangle" onClick={this.ascSort.bind(this)}></div>
-                <div className="triangle_transform"  onClick={this.descSort.bind(this)}></div>
+                <div className="triangle" onClick={this.props.ascSort}></div>
+                <div className="triangle_transform"  onClick={this.props.descSort}></div>
             </div>
         )
     }
@@ -31,18 +26,24 @@ export default class Table extends Component{
         super(props)
     }
 
+    ascSort(index){
+        this.props.actions.ascSort(index)
+    }
+    descSort(index){
+        this.props.actions.descSort(index)
+    }
+
     render(){
         const {head,body}=this.props
-        console.log(this.props)
         return(
             <table border="none">
                 <thead>
                 <tr>
-                    {head.map((n)=>{
+                    {head.map((n,k)=>{
                         return(
                         <th>
-                            {n.title}
-                        {n.sort&&<Sort {...this.props} ></Sort>}
+                            {n.get('title')}
+                        {n.get("sort")&&<Sort ascSort={this.ascSort.bind(this,k)} descSort={this.descSort.bind(this,k)}></Sort>}
                         </th>)
                     })}
                 </tr>
