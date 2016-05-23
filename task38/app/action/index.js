@@ -1,6 +1,6 @@
-export function ascSort(title){
-    return{type:'ASC_SORT',title}
+export function ascSort(index){
+    return{type:'ASC_SORT',index}
 }
-export function descSort(title){
-    return{type:'DESC_SORT',title}
+export function descSort(index){
+    return{type:'DESC_SORT',index}
 }

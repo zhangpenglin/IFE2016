@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
-
-const initialState = {
+import * as Immutable from 'immutable'
+const initialState = Immutable.fromJS({
     head: [
         {title: '姓名', sort: false},
         {title: '语文', sort: true},
@@ -11,55 +11,22 @@ const initialState = {
         ['小明', 80, 90, 70, 240],
         ['小红', 90, 60, 90, 240],
         ['小亮', 60, 100, 70, 230]]
-}
+})
 function sort(state = initialState, action) {
-    let index
+    let i
     switch (action.type) {
         case 'ASC_SORT':
-            state.head.forEach((n, i)=> {
-                if (n.title == action.title) {
-                    index = i
-                }
-            })
-            return Object.assign(
-                {},
-                {
-                    head: state.head,
-                    body: state.body.sort((a, b)=> {
-                        if (a[index] > b[index]) {
-                            return 1
-                        }
-                        else if (a[index] == b[index]) {
-                            return 0
-                        } else {
-                            return -1
-                        }
-                    })
-                }
-            )
+            i=action.index
+            return state.set('body',state.get('body').sort((a, b)=> {
+                return a.get(i)-b.get(i)
+            }))
+
             break;
         case 'DESC_SORT':
-            state.head.forEach((n, i)=> {
-                if (n.title == action.title) {
-                    index = i
-                }
-            })
-            return Object.assign(
-                {},
-                {
-                    head: state.head,
-                    body: state.body.sort((a, b)=> {
-                        if (a[index] < b[index]) {
-                            return 1
-                        }
-                        else if (a[index] == b[index]) {
-                            return 0
-                        } else {
-                            return -1
-                        }
-                    })
-                }
-            )
+            i=action.index
+            return state.set('body',state.get('body').sort((a, b)=> {
+                return b.get(i)-a.get(i)
+            }))
             break;
         default:
             return state
