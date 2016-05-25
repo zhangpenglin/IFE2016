@@ -85,7 +85,8 @@ export default class DatePicker extends Component {
         super(props)
         this.state={
             dp :new DatePickerClass(),
-            selectedDay:null
+            selectedDay:null,
+            show:false
         }
 
     }
@@ -119,18 +120,29 @@ export default class DatePicker extends Component {
         })
     }
 
-    handleSelectedDay(n,e){
+    handleFocus(){
         this.setState({
-            selectedDay:n
+            show:true
         })
-        this.props.onSelected(n)
+    }
+
+    handleSelectedDay(n,e){
+        setTimeout(()=>{
+            this.setState({
+                selectedDay:n,
+                show:false
+            })
+            this.props.onSelected(n)
+        },300)
+
     }
 
     render() {
         const dp=this.state.dp
         return (<div>
-                <div className="date"> {this.state.selectedDay?this.state.selectedDay.toLocaleDateString():""}</div>
-                <div className="container">
+                <div className="date"><input type="text" onFocus={this.handleFocus.bind(this)} value={this.state.selectedDay?this.state.selectedDay.toLocaleDateString():""}/></div>
+
+                <div className={"container "+(this.state.show?'show':'hide')}>
 
                     <div className="header">
                         <div className="triangle-left" onClick={this.handlePrev.bind(this)}></div>
