@@ -22095,15 +22095,19 @@
 	    }
 
 	    _createClass(App, [{
+	        key: 'handleSelected',
+	        value: function handleSelected(date) {
+	            console.log('selected date is:' + date);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement('div', { style: { height: '300px', width: '100px' } }),
-	                _react2.default.createElement(_datePicker2.default, this.props),
-	                _react2.default.createElement('div', { style: { height: '1600px', width: '100px' } })
+	                _react2.default.createElement('div', { style: { height: '100px', width: '100px' } }),
+	                _react2.default.createElement(_datePicker2.default, { onSelected: this.handleSelected.bind(this) })
 	            );
 	        }
 	    }]);
@@ -22268,7 +22272,8 @@
 
 	        _this.state = {
 	            dp: new DatePickerClass(),
-	            selectedDay: null
+	            selectedDay: null,
+	            show: false
 	        };
 
 	        return _this;
@@ -22308,16 +22313,29 @@
 	            });
 	        }
 	    }, {
+	        key: 'handleFocus',
+	        value: function handleFocus() {
+	            this.setState({
+	                show: true
+	            });
+	        }
+	    }, {
 	        key: 'handleSelectedDay',
 	        value: function handleSelectedDay(n, e) {
-	            this.setState({
-	                selectedDay: n
-	            });
+	            var _this2 = this;
+
+	            setTimeout(function () {
+	                _this2.setState({
+	                    selectedDay: n,
+	                    show: false
+	                });
+	                _this2.props.onSelected(n);
+	            }, 300);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            var dp = this.state.dp;
 	            return _react2.default.createElement(
@@ -22326,12 +22344,11 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'date' },
-	                    ' ',
-	                    this.state.selectedDay ? this.state.selectedDay.toLocaleDateString() : ""
+	                    _react2.default.createElement('input', { type: 'text', onFocus: this.handleFocus.bind(this), value: this.state.selectedDay ? this.state.selectedDay.toLocaleDateString() : "" })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'container' },
+	                    { className: "container " + (this.state.show ? 'show' : 'hide') },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'header' },
@@ -22395,7 +22412,7 @@
 	                                    x.map(function (n) {
 	                                        return _react2.default.createElement(
 	                                            'td',
-	                                            { className: _this2.getDayClass(n), onClick: _this2.handleSelectedDay.bind(_this2, n) },
+	                                            { className: _this3.getDayClass(n), onClick: _this3.handleSelectedDay.bind(_this3, n) },
 	                                            n.getDate()
 	                                        );
 	                                    })
@@ -22412,6 +22429,10 @@
 	}(_react.Component);
 
 	exports.default = DatePicker;
+
+	DatePicker.propTypes = {
+	    onSelected: _react2.default.PropTypes.string.isRequired
+	};
 
 /***/ },
 /* 197 */
@@ -22448,7 +22469,7 @@
 
 
 	// module
-	exports.push([module.id, ".date {\n  font-size: 14px;\n  height: 20px;\n  padding: 10px 0; }\n\n.container {\n  display: inline-block; }\n\n.header {\n  background-color: red;\n  color: white;\n  height: 20px;\n  position: relative;\n  text-align: center;\n  font-size: 14px;\n  line-height: 20px; }\n\ntable {\n  border: 1px solid #ccc;\n  border-collapse: collapse;\n  font-family: \"microsoft yahei\"; }\n  table tr {\n    padding: 0;\n    margin: 0; }\n  table th, table td {\n    padding: 2px 4px;\n    margin: 0;\n    position: relative;\n    text-align: center;\n    vertical-align: middle;\n    font-size: 12px; }\n  table td.currentMonth {\n    color: #111; }\n  table td.notCurrentMonth {\n    color: #ccc; }\n  table td.weekEnd {\n    color: red; }\n  table td.selected {\n    background-color: red;\n    color: white; }\n\n.triangle-left {\n  width: 0px;\n  height: 0px;\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  cursor: pointer;\n  position: absolute;\n  border-bottom: 6px solid white;\n  transform: rotate(270deg);\n  top: 7px;\n  left: 10px; }\n\n.triangle-right {\n  width: 0px;\n  height: 0px;\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  cursor: pointer;\n  position: absolute;\n  border-bottom: 6px solid white;\n  transform: rotate(90deg);\n  top: 7px;\n  right: 10px; }\n", ""]);
+	exports.push([module.id, ".date {\n  font-size: 14px;\n  height: 20px;\n  padding: 10px 0; }\n\n.container {\n  display: inline-block; }\n  .container.show {\n    display: inline-block; }\n  .container.hide {\n    display: none; }\n\n.header {\n  background-color: red;\n  color: white;\n  height: 20px;\n  position: relative;\n  text-align: center;\n  font-size: 14px;\n  line-height: 20px; }\n\ntable {\n  border: 1px solid #ccc;\n  border-collapse: collapse;\n  font-family: \"microsoft yahei\"; }\n  table tr {\n    padding: 0;\n    margin: 0; }\n  table th, table td {\n    padding: 2px 4px;\n    margin: 0;\n    position: relative;\n    text-align: center;\n    vertical-align: middle;\n    font-size: 12px; }\n  table td.currentMonth {\n    color: #111; }\n  table td.notCurrentMonth {\n    color: #ccc; }\n  table td.weekEnd {\n    color: red; }\n  table td.selected {\n    background-color: red;\n    color: white; }\n\n.triangle-left {\n  width: 0px;\n  height: 0px;\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  cursor: pointer;\n  position: absolute;\n  border-bottom: 6px solid white;\n  transform: rotate(270deg);\n  top: 7px;\n  left: 10px; }\n\n.triangle-right {\n  width: 0px;\n  height: 0px;\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  cursor: pointer;\n  position: absolute;\n  border-bottom: 6px solid white;\n  transform: rotate(90deg);\n  top: 7px;\n  right: 10px; }\n", ""]);
 
 	// exports
 
