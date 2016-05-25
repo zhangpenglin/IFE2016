@@ -17,9 +17,8 @@ class App extends Component {
 
         return (
             <div>
-                <div style={{height:'300px',width:'100px'}}></div>
+                <div style={{height:'100px',width:'100px'}}></div>
                 <DatePicker onSelected={this.handleSelected.bind(this)}></DatePicker>
-                <div style={{height:'1600px',width:'100px'}}></div>
 
             </div>
         )
