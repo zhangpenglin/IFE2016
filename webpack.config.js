@@ -7,7 +7,7 @@ module.exports = {
     entry: APP_PATH,
     output: {path: BUILD_PATH, filename: 'bundle.js'},
 
-    plugins: [new HtmlwebpackPlugin({title: 'Hello World app'})],
+    plugins: [new HtmlwebpackPlugin({title: 'BAIDU IFE2016 @ZhangPengLin'})],
     devServer: {
         historyApiFallback: true,
         hot: true,
