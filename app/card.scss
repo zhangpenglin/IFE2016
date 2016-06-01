@@ -1,0 +1,96 @@
+$purple: #BA68C8;
+$green: #52A43A;
+$orange: #F7AA17;
+$red: #EF5350;
+
+$card-height:60px;
+
+$animate-time:0.3s ease-in-out;
+
+$numberWidth:90px;
+$numberColorWidth:6px;
+$numberTrans:$numberWidth - $numberColorWidth;
+body{
+  background-color: #f1f1f1;
+  font-family: "microsoft yahei";
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+  margin: 40px auto 0;
+  justify-content: space-between;
+}
+
+.card{
+  border-radius:3px ;
+  overflow: hidden;
+  flex:0 1 490px;
+  height: $card-height;
+  display: flex;
+  background-color: #fff;
+  margin-bottom: 20px;
+  position:relative;
+
+  &:hover{
+    cursor: pointer;
+    &>.border{
+      left: 0;
+    }
+    &>.number{
+      color:#fff;
+    }
+  }
+  &>.name{
+    flex: 1;
+  }
+  &>.number{
+    color: #333;
+    width: $numberWidth;
+    height:$card-height ;
+    line-height:$card-height ;
+    transition:color $animate-time;
+    text-align: center;
+    z-index: 10;
+    &>span{
+    }
+
+  }
+  &>.name{
+    line-height:$card-height ;
+    border-left: 1px solid #ddd;
+    padding-left: 20px;
+    color:#333
+  }
+  &>.border{
+    z-index: 1;
+    position:absolute;
+    top:0;
+    left: -$numberTrans;
+    width: $numberWidth;
+    height:$card-height ;
+    transform-style: preserve-3d;
+    transition:left $animate-time;
+  }
+  &.red{
+    &>.border{
+      background-color: $red;
+    }
+  }
+  &.purple{
+    &>.border{
+      background-color: $purple;
+    }
+  }
+  &.orange{
+    &>.border{
+      background-color: $orange;
+    }
+  }
+  &.green{
+    &>.border{
+      background-color: $green;
+    }
+  }
+}
